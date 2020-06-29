@@ -1,0 +1,44 @@
+基本Linux命令：
+1、cd 改变目录
+2、cd ..回退到上级目录
+3、pwd显示当前所在的目录路径
+4、ls（ll）列出当前目录中的所有文件，ll列出的内容更为详细
+5、touch新建一个文件，例如 touch index.js
+6、rm删除一个文件，例如rm index.js
+7、mkdir新建一个目录，就是新建一个文件夹
+8、rm -r删除一个文件夹，例如rm -r src
+9、mv移动文件，例如mv index.html src，index.html是要移动的文件，src是目标文件夹（需要在同一级目录下）
+10、reset重新初始化终端/清屏
+11、clear清屏
+12、history查看历史命令
+13、help帮助
+14、exit退出
+15、#表示注释
+
+Git配置：
+1、git config -l查看配置
+2、git config --global user.name "SAKURA" #配置名称（github的名称）
+     git config --global user.email 1519607431@qq.com #配置邮箱（github的邮箱）
+（global配置文件在C:\Users\WT下面的.gitconfig）
+
+Git原理：
+1、git add：将本地文件添加到暂存区
+2、git commit：将暂存区的提交到本地Git仓库
+3、git push：上传到远程仓库（Github）
+4、git pull：从远程仓库到本地仓库
+5、git reset：从本地仓库回滚到暂存区
+6、git checkout：将暂存区没更改的文件恢复到本地文件
+
+Git命令：
+git init：初始化项目
+git clone：克隆/复制远程仓库内容（Github）
+git status：查看当前工作区的工作状态
+git add .：将本地所有文件提交到暂存区（或者git add 加文件名）
+git commit -m “对提交的内容的描述信息”：提交暂存区中文件到本地仓库，-m表示提交文件的描述信息
+git diff：查看工作区和暂存区的区别
+git log：查看提交的历史版本
+git reset --hard 想恢复到的版本号
+C/用户/用户名/.ssh：默认空文件夹，在该文件夹下git bash，ssh-keygen -t rsa生成密钥并且加上加密算法，输入相应内容
+将生成的公钥（带pub的）用notepad打开，复制内容到github上
+在github上创建远程仓库，然后把远程仓库克隆到本地，即可以做出修改上传
+git remote add origin https://github.com/我的账号/我的项目名称.git
