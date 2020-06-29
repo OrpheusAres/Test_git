@@ -1,0 +1,188 @@
+********************
+版本：v2.82.7
+
+一、建模：
+
+#####
+Tips：
+1、编辑模式下选中环切的所有点或线（Alt+鼠标左键选中某条线进行环选），Double G：Loop Slide Loop Edge（沿环切的方向移动）
+2、编辑模式下全选物体，Alt+M，对选中的点进行融合（视口右上角 XYZ 边上也有个 Auto Merge Vertices 按钮）
+3、编辑模式下选中面中的几个点，按住 Ctrl 键，鼠标右键点击要挤出到的地方，可实现快速挤出
+4、编辑模式下选择曲线中的点时，按下键盘 C 键，进行圆形选择
+5、编辑模式下选中几个点，S—>X/Y/Z—>0，将选中的点进行轴向对齐
+6、编辑模式下全选所有的面，Shift+N，重新计算外部法线
+7、编辑模式下，在物体拐角的部分，Ctrl+B，倒角
+8、物体模式下，选中某个物体，Ctrl+A—>Scale，在不改变物体大小的情况下将Scale全部还原为1
+9、吸附工具选中增量、点、线或面，勾选 Align Rotation To Target，无需点击磁铁图标，选中要移动的点，G键移动，按住Ctrl，移动到目标点上自动吸附
+10、物体模式下，S键/G键/R键都可通过按住 Shift 键进行轻微的改变
+11、修改器中需要注意各修改项的位置顺序
+12、Solidify修改器增加面的厚度（Thickness调节厚度，Offset调为1）
+13、物体边缘处最好轻微倒角处理（修改器，Bevel，调节 Offset 和 Segments 的值）
+14、物体模式下，Alt+H，显示所有物体
+15、Mirror 修改器，点击 Mirror Object 右侧的吸管，吸取 A 物体，将沿轴并且以 A 物体的 Origin 为轴心进行镜像
+16、Ctrl+Alt+Q，显示三视图和透视图
+17、编辑模式下，选中一条环切线，double G 沿环切方向移动，E键与右侧环切线平行，F键与左侧环切线平行（看红色的小点位置）
+18、编辑模式下，Alt+S，沿法线方向进行缩放（大多数用在点上），对整个物体进行则会出现皱缩或者膨胀的效果
+19、编辑模式下，选中一个点/线，double G，可对其进行沿边滑动（只能在点或线的一侧），按住 Alt 键（或按一次 C 键）可滑动到另一侧
+20、物体模式下，物体旋转一定的角度，进入编辑模式，选中要移动的点/线/面，G/S/R键，double X/Y/Z，可沿物体的 Local 坐标系进行位移
+21、Alt+Z：透视模式
+22、切割模型：编辑模式下，全选，F3，Bisect（或Mesh—>Bisect）
+23、编辑模式下，选中要切割的边，Ctrl+E，Mark Seam：标记缝合边，Clear Seam：清除缝合边
+24、打开 UV Editing 视口，在建模视口中编辑模式下全选，U键，Unwrap
+25、Shear：Alt+鼠标左键环选环切的点，Shear（Shift+Ctrl+Alt+S），X/Y，将选中的点沿当前平面及物体中心点进行旋转
+26、UV Editor中，选中某片其中的一个点/一条边/一个面，L键全选整块缝合边展开的那片，在视图编辑模式中，左下角的 Select Linked 勾选 Seam
+27、漫游模式：视口左上角 View，Navigation，选择 Fly/Walk，可以和游戏视角类似的进行场景漫游，G键启用重力模式，E/Q上升下降
+28、Ctrl+Shift+B：Vertex Bevel，Ctrl+B：Edge Bevel（Bevel 过程中滑动鼠标滚轮增加/减少过渡平滑的数量）
+29、编辑模式下，选中物体的外边框：边模式下，首先选中一条边，Shift+G—>Amount of faces around an edge
+30、编辑模式下，选中某些点或边或面，P键，将选中的部分分离成一个单独的物体
+31、将线条转换成曲线物体：物体模式下，选中线条，视口中 Object—>Convert to—>Curve from Mesh/Text
+32、将新建的Cube快速转化为一个点：编辑模式，选中所有的点，X键，Edge Collapse（只保留一条边：Edge Loops）
+33、小键盘的 ./DEL 键为快速拉近选中物体视角
+34、查看模型的法线方向：（视口模式右上角两个环的图标）Overlays—>Face Orientation，正向方向为蓝色，反向为红色
+35、镜头缓慢的拉近和拉远：先将镜头锁定，View—>Navigation—>Walk Navigation，鼠标调整角度，W/A/S/D缓慢调整位置（滚轮调节移动的速度），鼠标左键确定视角，右键取消
+#####
+
+#####
+1、边缘有曲线弧度的模型
+利用 Loop Cut 和 Subdivision Surface 修改器（尽量使线条过渡平滑且相互平行）
+#####
+
+#####
+2、对称的模型
+先用环切切出对称轴，删除一半的 Mesh，再利用 Mirror 修改器生成另一半（勾选 Clipping 使镜像后的两半沿对称轴进行融合）
+#####
+
+#####
+3、使用了 Subdivision Surface 修改器后，想使其中某个面的边缘变得锐利
+方法一：直接删除该面
+方法二：编辑模式下，选中一条或多条边，Shift+E（Edge Crease）
+#####
+
+#####
+4、在使用 Shade Smooth 的同时，保持物体边缘的角度
+修改器下方绿色倒三角：Object Data Properties—>Normals，勾选 Auto Smooth，当超过 Angle 的度数时，将不再 Smooth 处理
+当 Shade Smooth 和 Bevel 同时进行并出现问题时（Bevel 后没有明显的线条时），勾选 Bevel 中的 Mark Sharp 选项
+当 Shade Smooth 和 Bevel 同时进行并在光滑的面上出现棱角时，在 Bevel 修改器中的 Limit Method 选中 Angle，超过该度数时进行 Bevel 处理
+#####
+
+#####
+5、当曲面上一条曲线上的一个点凸出或凹陷在曲面外/内
+编辑模式下，Alt+S，进行沿法线方向皱缩或膨胀处理
+#####
+
+#####
+6、添加表面细分修改器，当在编辑模式中对环切点进行旋转时会导致其它点的移动（例如沿Z轴下降等）
+F3，搜索 Shear，沿 X/Y 轴进行旋转移动
+#####
+
+二、UV：
+
+#####
+1、标记好缝合边，UV展开之后，测试材质贴图不会被拉伸
+在 UV Editing 视口，在 UV 展开之后，新建一个图片，Generated Type 选择 UV Grid，新建一个材质球，Base Color选择 Image Texture，选择那张图片，观察正方形是否变形
+#####
+
+#####
+2、当使用 UV Grid 后发现在环切的缝合边处有些贴图被拉伸
+编辑模式选中那条环切的缝合边，Shift+E
+#####
+
+#####
+3、UV模式下，只显示当前 L 键选中的那一部分，并对其进行贴图处理
+UV Editor中，选中某片其中的一个点/一条边/一个面，L键全选整块缝合边展开的那片，在视图编辑模式中，左下角的 Select Linked 勾选 Seam
+#####
+
+#####
+4、UV模式下，想要选中多个部分
+圈选几块中各自的一小部分，Ctrl+L，选中几块整个部分
+#####
+
+三、贴图：
+
+#####
+1、地形大面积贴图平铺出现砖块效果
+https://www.youtube.com/watch?v=-VgtSL5ZpYc
+#####
+
+四、Shader：
+
+#####
+1、Ambient Occlusion：AO，返回黑白数值（Eevee渲染器需要勾选AO选项）
+2、Fresnel：通过算法决定哪里的光需要反射以及哪里的光需要折射（和 Mix Shader 合用效果更好）
+#####
+
+五、光照、渲染：
+
+六、动画：
+
+#####
+1、
+#####
+
+七、插件：
+
+#####
+1、UV Squares：
+UV Editor中，选中想要变成规整长方形的一片，点击 To Grid By Shape，可以将曲线变成一条直线
+#####
+
+八、案例：
+
+#####
+1、构建地形
+导入地形的海拔高度：可以通过对平面进行表面细分（编辑模式右键）和 Displace 修改器，在 Displace 修改器中添加材质，导入高度图，类型为 Image or movie，Color Space 选择 Linear，Shader Smooth 和 Displace 的 Strength 高度处理
+规划湖泊、植被等的分布及布局
+将视口中左上角的 ObjectMode 改为 WeightPaint，对地形进行权重分配，在 Object Data Properties 中修改 Vertex Groups 的名称（WeightPaint）
+可通过在 Object Data Properties 中新建 Vertex Groups 来添加新的权重分配（从而实现各种类型的植被、石头等以不同类型的权重分布）
+（添加一个 Displace 修改器，选择土壤纹理，在 Vertex Group 中选择该 Groups 的名称（如上的 WeightPaint），调节 Texture Coordinates（UV）、Midlevel 和 Strength 的值，实现权重部分高低起伏的效果）
+给地形添加粒子系统（命名为草、石头等），改为 Hair，Render 下方的 Render As 改为 Object，Object 用吸管吸取 Scatter 插件中的草模型（要重新新建一个平面使用 Scatter 插件），调整参数
+粒子系统的 Vertex Groups 的 Density 选择当时修改的 Groups 的名字
+湖泊的波纹效果：将新建的平面（水面）进行细分，通过 Bump 和 Noise 节点实现纹理效果
+土壤的颗粒感：Shader 中连接 Color、Rough、Normal 等其他节点，添加 Displace 修改器，导入 Displace 纹理图片，将 Texture Coordinates 调为 UV，调节 Midlevel 和 Strength 参数
+#####
+
+#####
+2、构建马路、人行道以及马路牙子
+首先按照图纸用平面挤出等操作绘制出中间的马路（可以用表面细分修改器再加上环切做出有曲线的马路）
+然后编辑模式下，选中马路路面的一条边，Shift+G—>Amount of faces around an edge，选中整个马路路面的外围一圈所有的边
+P键，将一圈线分离为单独的物体，并在物体模式下，Object—>Convert to—>Curve from Mesh/Text
+新建一个平面，编辑模式，选中所有的点，X键，Edge Collapse，转换为一个点，绘制出马路牙子和人行道的线条(例如：/-\______）（最好将人行道和马路牙子断开处理：选中交界的点，将它处于激活状态，V，X，分离并沿 X 轴移动）
+将上述线条在物体模式下，Object—>Convert to—>Curve from Mesh/Text
+选中马路外边框，在 Object Data Properties 中的 Geometry 选项卡中的 Bevel 中的 Object 选择马路牙子和人行道的线条
+调整模型的法线方向（Overlays—>Face Orientation，正向方向为蓝色，反向为红色）
+如果边缘有锯齿状，可以将 Curve 转换为 Mesh，再在 Object Data Properties 中 Normals 勾选 Auto Smooth，设置角度，并对物体进行 Shade Smooth 处理
+编辑模式下，选中一些点，F 填充面，当需要改变面的形状时，点模式下，Ctrl+R，鼠标左键点击某条边，可以在该边添加一个点，对其进行移动，形成一个四边面（仅限对三点面使用）
+#####
+
+#####
+3、摄像机围绕某物体旋转
+在场景中新建一个空物体：Plain Axes，将它的Origin点移到合适的位置，选中摄像机与 Axes，Control+P—>Object（Keep Transform）
+将摄像机移动到物体前，锁定摄像机，I键—>LocRotScale，添加关键帧，记录当前摄像机的位置、旋转值，移动场景，I键再次添加关键帧（当摄像机通过 Control+P 以某个物体为父级时，I键要记录的是父级物体的位置等信息）
+#####
+
+#####
+4、多个摄像机进行相互切换
+先对第一个摄像机的运动进行关键帧处理，在需要切换摄像机帧的位置按 M键，会有一个 F_（帧数）的标记，然后 Ctrl+B，图标变为摄像机
+然后再在场景中新建另外一个摄像机，在第一个相机结束帧后，M键，Ctrl+B，实现主控摄像机的切换
+对第二台摄像机进行关键帧的设置，播放动画，可实现两台或多台摄像机位置移动且相互切换的效果
+也可以通过再次对之前的摄像机进行选择，M，Ctrl+B，实现几台摄像机之间的轮流切换功能
+#####
+
+#####
+5、Blender GIS 的 Base Map 获取平面图
+方法一：
+G键选取位置，L键对当前范围进行锁定（鼠标滚轮扩大三倍添加表面细节），鼠标滚轮进行缩放，E键截取当前屏幕，给平面添加表面细分修改器，类型改为 Simple，更改细分的段数
+GET SRTM 获取地形海拔高度，GET OSM 获取街道、房屋；在材质选项卡，Sampling 中勾选 Interpolation选项；平滑表面，右键，Shade Smooth
+在修改器选项卡中，将所有修改器进行 Apply；进入编辑模式，E 键沿 Z 轴进行挤出；S + Z + 0，进行地面的齐平处理；添加背景 HDR，Cycles 渲染
+Cycles 渲染的 Film 下方勾选 Transparent 隐藏 HDR 图片，只保留光照；Cycles 渲染的 Color Management 选项卡选择 Filmic 和 Look 中的 Contrast
+编辑模式，面模式下，Alt + 鼠标左键选中侧边的一个面，环选四周，使用 Shader 添加地层的材质
+方法二：
+https://tangrams.github.io/heightmapper/
+下载带有和不带有 MapLine、MapLabel 的黑白高度图；在Blender GIS 中使用方法一中的方法得到卫星图，格式为tif，先Lock，再扩大缩放倍数；将卫星图和两个高度图导入PS中，进行位置的对齐
+框选出所要的地理位置，图像、裁剪去掉多余部分，并将三张图片大小保持一致；窗口，扩展功能，打开 3D Generator Terrain，Create new Terrain；选中高度图层，将其他图层隐藏
+将 Elevation 调到合适的位置，选取角度，点击 Left/Right/Frontal 进行生成；生成好后，点击 Texturing，将卫星的 tif 图片拖到 top layer的上方；将卫星图的类型改为强光，调整不透明度
+展开 top layer，选中 standard 图层前方的渐变映射；点击属性面板的渐变条，对颜色和位置进行调整；钢笔工具抠出湖泊等图形并上色；保存为 tif 格式，并保留图层信息
+在 Blender 中新建一个平面，将大小设置为 tif 的像素大小；添加修改器 Subdivision Surface，改为 Simple，调整参数；添加修改器 Displace，添加 Texture，type 为图片或电影，添加高度图，Color Space 选择 Linear
+通过调整修改器 Displace 中的 Strength 或者 N键 Scale 中的 Z轴高度来调整地形起伏程度；修改器 Apply 应用，右键 Shade Smooth
+将 PS 中的三重贴图导出的 tif 格式图片添加到 Shader 中，添加 Background 的 HDR，过程如方法一；调整 Shader，更改色调
+#####
