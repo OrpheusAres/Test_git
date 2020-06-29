@@ -25,7 +25,7 @@ Git原理：
 1、git add：将本地文件添加到暂存区
 2、git commit：将暂存区的提交到本地Git仓库
 3、git push：上传到远程仓库（Github）
-4、git pull：从远程仓库到本地仓库
+4、git pull：从远程仓库更新到本地仓库
 5、git reset：从本地仓库回滚到暂存区
 6、git checkout：将暂存区没更改的文件恢复到本地文件
 
@@ -42,3 +42,11 @@ C/用户/用户名/.ssh：默认空文件夹，在该文件夹下git bash，ssh-
 将生成的公钥（带pub的）用notepad打开，复制内容到github上
 在github上创建远程仓库，然后把远程仓库克隆到本地，即可以做出修改上传
 git remote add origin https://github.com/我的账号/我的项目名称.git
+git push -u origin master（第一遍之后就可以直接add、commit、push提交）
+（注：第一次push需要输入github的账号和密码）
+（注：如果直接在github某个新建的库中添加了readme文件或者其他什么文件，但是本地库没有进行同步，这时会出现push失败的问题：
+         error：failed to push some refs to
+          解决方法：git pull --rebase origin master（分支根据自己情况而定）
+                        （rebase的作用是暂存本地库中刚刚的commit，等远程库同步到本地库之后，再把commit接到更新后的本地库之中）
+                          之后就可以进行push操作
+）
