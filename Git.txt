@@ -18,7 +18,7 @@
 Git配置：
 1、git config -l查看配置
 2、git config --global user.name "SAKURA" #配置名称（github的名称）
-     git config --global user.email 1519607431@qq.com #配置邮箱（github的邮箱）
+     git config --global user.email "1519607431@qq.com" #配置邮箱（github的邮箱）
 （global配置文件在C:\Users\WT下面的.gitconfig）
 
 Git原理：
@@ -36,7 +36,7 @@ git status：查看当前工作区的工作状态
 git add .：将本地所有文件提交到暂存区（或者git add 加文件名）
 git commit -m “对提交的内容的描述信息”：提交暂存区中文件到本地仓库，-m表示提交文件的描述信息
 git diff：查看工作区和暂存区的区别
-git log：查看提交的历史版本
+git log：查看提交的历史版本（按住Enter键下翻）
 git reset --hard 想恢复到的版本号
 C/用户/用户名/.ssh：默认空文件夹，在该文件夹下git bash，ssh-keygen -t rsa生成密钥并且加上加密算法，输入相应内容
 将生成的公钥（带pub的）用notepad打开，复制内容到github上
